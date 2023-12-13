@@ -1,16 +1,8 @@
-# Utilisation d'une image de base
-FROM ubuntu:latest
+# Use a lightweight web server image (Nginx)
+FROM nginx:alpine
 
-# Instructions pour l'installation de paquets ou de dépendances
-RUN apt-get update && apt-get install -y \
-    package1 \
-    package2
+# Copy your HTML file into the default Nginx public folder
+COPY index.html /usr/share/nginx/html
 
-# Copie des fichiers de votre application dans l'image Docker
-COPY . /app
-
-# Définition du répertoire de travail
-WORKDIR /app
-
-# Commande à exécuter lors du démarrage du conteneur
-CMD ["./votre_script_de_demarrage.sh"]
+# Expose port 80 to allow external access
+EXPOSE 80
